@@ -19,8 +19,8 @@ module.exports = {
 
 	langs: {
 		en: {
-			chatting: 'Wait lang honey hanapan kita sagot...',
-			error: 'If this report spam please contact Kenlie Navacilla Jugarap'
+			chatting: 'Wait lang honey hanapan kita ng sagot...',
+			error: 'Pasensya na honey may error eh wala akong mahanap na sagot'
 		}
 	},
 
@@ -55,15 +55,10 @@ module.exports = {
 	}
 };
 
-async function getMessage(yourMessage, langCode) {
-	try {
-		const res = await axios.get(`https://api.kenliejugarap.com/ai/?text=${yourMessage}`);
-		if (!res.data.response) {
-			throw new Error('Please contact Kenlie Navacilla Jugarap if this error spams...');
-		}
+
 		return res.data.response;
 	} catch (err) {
-		console.error('Sorry honey d ko nahanap yung sagot:', err);
+		console.error('Error honey, ano ulit yun?:', err);
 		throw err;
 	}
 }
