@@ -1,50 +1,69 @@
-const axios = require('axios');
-const fs = require('fs');
-
+const axios = require("axios");
 module.exports = {
-		config: {
-				name: "yuno",
-				version: "1.0.0",
-				role: 0,
-				author: "Jonell Magallanes",
-				shortDescription: "EDUCATIONAL",
-				countDown: 0,
-				category: "other",
-				guide: {
-						en: '[question]'
-				}
+	config: {
+		name: 'yuno',
+		version: '2.1.0',
+		author: 'KENLIEPLAYS',
+		countDown: 5,
+		role: 0,
+		shortDescription: 'AI by Kenlie Navacilla Jugarap',
+		longDescription: {
+			en: 'AI by Kenlie Navacilla Jugarap'
 		},
-
-		onStart: async function ({ api, event, args }) {
-				const content = encodeURIComponent(args.join(" "));
-				const apiUrl = `https://aiapiviafastapiwithimagebyjonellmagallanes.replit.app/ai?content=${content}`;
-
-				if (!content) return api.sendMessage("Please provide your question.\n\nExample: ai what is the solar system?", event.threadID, event.messageID);
-
-				try {
-						api.sendMessage("🔍 | Wait lang honey hanapan kita sagot...", event.threadID, event.messageID);
-
-						const response = await axios.get(apiUrl);
-						const { request_count, airesponse, image_url } = response.data;
-
-						if (airesponse) {
-								api.sendMessage(`${airesponse}\n\n📝 Request Count: ${request_count}`, event.threadID, event.messageID);
-
-								if (image_url) {
-										const imagePath = './image.jpg';
-										const imageResponse = await axios.get(image_url, { responseType: 'arraybuffer' });
-										fs.writeFileSync(imagePath, Buffer.from(imageResponse.data));
-
-										api.sendMessage({ attachment: fs.createReadStream(imagePath) }, event.threadID, () => {
-												fs.unlinkSync(imagePath); 
-										});
-								}
-						} else {
-								api.sendMessage("An error occurred while processing your request.", event.threadID);
-						}
-				} catch (error) {
-						console.error(error);
-						api.sendMessage("🔨 | Sorry honey d ko nahanap yung sagot...", event.threadID);
-				}
+		category: 'ai',
+		guide: {
+			en: '   {pn} <word>: ask with AI'
+				+ '\n   Example:{pn} hi'
 		}
+	},
+
+	langs: {
+		en: {
+			chatting: 'Wait lang honey hanapan kita sagot...',
+			error: 'If this report spam please contact Kenlie Navacilla Jugarap'
+		}
+	},
+
+	onStart: async function ({ args, message, event, getLang }) {
+		if (args[0]) {
+			const yourMessage = args.join(" ");
+			try {
+				const responseMessage = await getMessage(yourMessage);
+				return message.reply(`${responseMessage}`);
+			}
+			catch (err) {
+				console.log(err)
+				return message.reply(getLang("error"));
+			}
+		}
+	},
+
+	onChat: async ({ args, message, threadsData, event, isUserCallCommand, getLang }) => {
+		if (!isUserCallCommand) {
+			return;
+		}
+		if (args.length > 1) {
+			try {
+				const langCode = await threadsData.get(event.threadID, "settings.lang") || global.GoatBot.config.language;
+				const responseMessage = await getMessage(args.join(" "), langCode);
+				return message.reply(`${responseMessage}`);
+			}
+			catch (err) {
+				return message.reply(getLang("error"));
+			}
+		}
+	}
 };
+
+async function getMessage(yourMessage, langCode) {
+	try {
+		const res = await axios.get(`https://api.kenliejugarap.com/ai/?text=${yourMessage}`);
+		if (!res.data.response) {
+			throw new Error('Please contact Kenlie Navacilla Jugarap if this error spams...');
+		}
+		return res.data.response;
+	} catch (err) {
+		console.error('Sorry honey d ko nahanap yung sagot:', err);
+		throw err;
+	}
+}
