@@ -15,16 +15,10 @@ module.exports = {
 		envConfig: {}
 	},
 	onStart: async function ({ message }) {
-		const botName = "yazky";
-		const botPrefix = "!";
-		const authorName = "CliffVincent";
-		const ownAge = "18";
-		const teamName = "Github team";
-		const authorFB = "https://www.facebook.com/swordigo.swordslush";
-		const authorInsta = "Thead469";
-		const tikTok = "tiktok.com/@Cliffthegreat0";
-		const urls = JSON.parse(fs.readFileSync('cliff.json'));
-		const link = urls[Math.floor(Math.random() * urls.length)];
+		const botName = "YUNO";
+		const botPrefix = "*";
+		const authorName = "YOYA / AYMI";
+		const ownAge = "secrettt";
 		const now = moment().tz('Asia/Jakarta');
 		const date = now.format('MMMM Do YYYY');
 		const time = now.format('h:mm:ss A');
@@ -41,12 +35,8 @@ module.exports = {
 \Bot Prefix: ${botPrefix}
 \owner: ${authorName}
 \age : ${ownAge}
-\Facebook: ${authorFB}
-\Instagram: ${authorInsta}
-\TikTok: ${tikTok}
 \Datee: ${date}
 \Time: ${time}
-\Team: ${teamName}
 \Uptime: ${uptimeString}
 \===============`,
 			attachment: await global.utils.getStreamFromURL(link)
