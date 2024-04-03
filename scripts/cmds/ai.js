@@ -1,64 +1,66 @@
-const axios = require("axios");
+const axios = require('axios');
+//not for mirai/botpack
 module.exports = {
 	config: {
 		name: 'yuno',
-		version: '2.1.0',
-		author: 'KENLIEPLAYS',
-		countDown: 5,
+		version: '1.0',
+		author: 'JV Barcenas && LiANE', // do not change
+		credits: 'JV Barcenas && LiANE', // do not change
 		role: 0,
-		shortDescription: 'AI by Kenlie Navacilla Jugarap',
-		longDescription: {
-			en: 'AI by Kenlie Navacilla Jugarap'
+		usePrefix: false,
+		hasPermission: 2,
+		category: 'Ai - Chat',
+		commandCategory: 'Ai - Chat',
+		description: 'Make commands ',
+		usages: '[prompt]',
+		vip: false,
+		license: `All Rights Reserved\n\nCopyright (c) [year] [author]\n\nAll rights reserved. No part of this software may be reproduced, distributed, or transmitted in any form or by any means, including photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the copyright holder.`,
+		shortDescription: {
+			en: 'Make commands goat',
 		},
-		category: 'ai',
+		longDescription: {
+			en: 'Make commands with the help of GoatAI',
+		},
 		guide: {
-			en: '   {pn} <word>: ask with AI'
-				+ '\n   Example:{pn} hi'
+			en: '{pn} [prompt]',
+		},
+	},
+	onStart: async function (context) {
+		const { api, event } = context;
+
+		try {
+			//const prompt = event.body.trim();
+			const [cmd, ...args] = event.body.split(" ");
+			const prompt = args.join(" ");
+			if (prompt) {
+
+
+				const response = await axios.get(`https://school-project-lianefca.bene-edu-ph.repl` +`.co/` + `ask/goatai?query=${encodeURIComponent(prompt)}`);
+
+				if (response.data) {
+					const messageText = response.data.message;
+					await api.sendMessage(messageText, event.threadID, event.messageID);
+
+					console.log('Sent answer as a reply to the user');
+				} else {
+					throw new Error('Invalid or missing response from API');
+				}
+			}
+		} catch (error) {
+			console.error(`Failed to get an answer: ${error.message}`);
+			api.sendMessage(
+				`${error.message}.\n\nYou can try typing your question again or resending it, as there might be a bug from the server that's causing the problem. It might resolve the issue.`,
+				event.threadID
+			);
 		}
 	},
-
-	langs: {
-		en: {
-			chatting: 'Wait lang honey hanapan kita ng sagot...',
-			error: 'Pasensya na honey may error eh wala akong mahanap na sagot'
-		}
+	run: async function (context) {
+		module.exports.onStart(context);
 	},
-
-	onStart: async function ({ args, message, event, getLang }) {
-		if (args[0]) {
-			const yourMessage = args.join(" ");
-			try {
-				const responseMessage = await getMessage(yourMessage);
-				return message.reply(`${responseMessage}`);
-			}
-			catch (err) {
-				console.log(err)
-				return message.reply(getLang("error"));
-			}
-		}
+	execute: async function (context) {
+		module.exports.onStart(context);
 	},
-
-	onChat: async ({ args, message, threadsData, event, isUserCallCommand, getLang }) => {
-		if (!isUserCallCommand) {
-			return;
-		}
-		if (args.length > 1) {
-			try {
-				const langCode = await threadsData.get(event.threadID, "settings.lang") || global.GoatBot.config.language;
-				const responseMessage = await getMessage(args.join(" "), langCode);
-				return message.reply(`${responseMessage}`);
-			}
-			catch (err) {
-				return message.reply(getLang("error"));
-			}
-		}
-	}
-};
-
-
-		return res.data.response;
-	} catch (err) {
-		console.error('Error honey, ano ulit yun?:', err);
-		throw err;
-	}
+	onPREFIX: async function (context) {
+		module.exports.onStart(context);
 }
+};
