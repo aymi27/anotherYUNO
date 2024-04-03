@@ -39,7 +39,7 @@ module.exports = {
 \Time: ${time}
 \Uptime: ${uptimeString}
 \===============`,
-			attachment: await global.utils.getStreamFromURL(link)
+
 		});
 	},
 	onChat: async function ({ event, message, getLang }) {
