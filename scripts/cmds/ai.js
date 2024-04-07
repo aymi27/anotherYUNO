@@ -24,7 +24,7 @@ module.exports.run = async function ({ api, event, args }) {
     if (!content) return api.sendMessage("Ano bang itatanong mo?.\n\nMag tanong ka para naman mahanapan ko ng sagot, event.threadID, event.messageID);
 
     try {
-        api.sendMessage("🔍 | Wait hanapan kita sagot...", event.threadID, event.messageID);
+        api.sendMessage("🔍 | wait hanapan kita sagot...", event.threadID, event.messageID);
 
         const response = await axios.get(apiUrl);
         const { content: result, requestCount } = response.data; // Updated response structure
