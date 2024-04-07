@@ -1,3 +1,4 @@
+const axios = require('axios');
 const { config } = global.GoatBot;
 const { writeFileSync } = require("fs-extra");
 
