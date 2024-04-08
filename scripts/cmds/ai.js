@@ -1,4 +1,3 @@
-const axios = require('axios');
 const fs = require('fs').promises;
 
 const storageFile = 'user_data.json';
