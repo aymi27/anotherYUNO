@@ -1,6 +1,6 @@
 module.exports = {
 	config: {
-			name: "yunopogi",
+			name: "sisiganda",
 			version: "1.0",
 			author: "Jaychris Garcia",
 			countDown: 5,
