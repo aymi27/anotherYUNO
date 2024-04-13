@@ -44,10 +44,6 @@ const axios = require('axios');
 
 const port = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-	const htmlFiles = ['clock.html', 'analog.html', 'crazy.html', 'index.html', 'randomQuote.html', 'randomVideo.html'];
-	const randomFile = htmlFiles[Math.floor(Math.random() * htmlFiles.length)];
-	res.sendFile(path.join(__dirname, 'temp', randomFile));
 });
 
 app.listen(port, () => {
