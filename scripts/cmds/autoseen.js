@@ -1,5 +1,5 @@
 const fs = require('fs-extra');
-const pathFile = __dirname + '/cache/autoseen.txt';
+const pathFile = __dirname + '/cmds/tmp/autoseen.txt';
 
 module.exports = {
 	config: {
