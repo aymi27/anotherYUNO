@@ -110,7 +110,7 @@ module.exports = {
                                 const longDescription = configCommand.longDescription ? configCommand.longDescription.en || "No description" : "No description";
 
                                 const guideBody = configCommand.guide?.en || "No guide available.";
-                                const usage = guideBody .replace(/{p}/g, prefix).replace(/{n}/g, configCommand.name);
+                                const usage =guideBody .replace(/{p}/g,prefix).replace(/{n}/g, configCommand.name);
 
                                 const response =`╭── ﹝ 🐰𝗡𝗔𝗠𝗘🐰 ────﹝🐰﹞
         │ ${configCommand.name}
