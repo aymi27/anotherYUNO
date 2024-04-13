@@ -3,7 +3,7 @@ const axios = require("axios");
 const path = require("path");
 const { getPrefix } = global.utils;
 const { commands, aliases } = global.GoatBot;
-const doNotDelete = "﹝🐇 | 𝚂𝙸𝚂𝙸 𝙰𝙸 ﹞"; // changing this wont change the goatbot V2 of list cmd t is just a decoyy
+const doNotDelete = "﹝🐇 | SISI AI ﹞"; // changing this wont change the goatbot V2 of list cmd it is just a decoyy
 
 module.exports = {
         config: {
@@ -28,40 +28,40 @@ module.exports = {
         onStart: async function ({ message, args, event, threadsData, role }) {
                 const { threadID } = event;
                 const threadData = await threadsData.get(threadID);
-                const prefix = getPrefix(threadID);
+                const prefix = false(threadID);
 
                 if (args.length === 0) {
                         const categories = {};
                         let msg = "";
 
-                        msg += `──────▄▀▄─────▄▀▄\n─────▄█░░▀▀▀▀▀░░█▄\n─▄▄──█░░░░░░░░░░░█──▄▄\n█▄▄█─█░░▀░░┬░░▀░░█─█▄▄█\n\n░██████╗██╗░██████╗██╗\n██╔════╝██║██╔════╝██║\n╚█████╗░██║╚█████╗░██║\n░╚═══██╗██║░╚═══██╗██║\n██████╔╝██║██████╔╝██║\n╚═════╝░╚═╝╚═════╝░╚═╝\n\n◦❭❯❱ 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦 & 𝗖𝗔𝗧𝗘𝗚𝗢𝗥𝗬 ❰❮❬◦`; // replace with your name 
+                        msg += `──────▄▀▄─────▄▀▄\n─────▄█░░▀▀▀▀▀░░█▄\n─▄▄──█░░░░░░░░░░░█──▄▄\n█▄▄█─█░░▀░░┬░░▀░░█─█▄▄█\n\n░██████╗██╗░██████╗██╗\n██╔════╝██║██╔════╝██║\n╚█████╗░██║╚█████╗░██║\n░╚═══██╗██║░╚═══██╗██║\n██████╔╝██║██████╔╝██║\n╚═════╝░╚═╝╚═════╝░╚═╝\n\n﹝ 🐰| 𝗦𝗜𝗦𝗜 𝗔𝗜 ﹞`; // replace with your name 
 
                         for (const [name, value] of commands) {
                                 if (value.config.role > 1 && role < value.config.role) continue;
 
-                                const category = value.config.category || "Uncategorized";
+                                const category = value.config.category || "𝚄𝙽𝙲𝙰𝚃𝙴𝙶𝙾𝚁𝙸𝚉𝙴𝙳";
                                 categories[category] = categories[category] || { commands: [] };
                                 categories[category].commands.push(name);
                         }
 
                         Object.keys(categories).forEach((category) => {
                                 if (category !== "info") {
-                                        msg += `\n╭───────────❍\n│ 『  ${category.toUpperCase()}  』`;
+                                        msg += `\n╭───────────🎀\n│ 〘 ✨🍥${category.toUpperCase()}🍥✨ 〙`;
 
 
                                         const names = categories[category].commands.sort();
                                         for (let i = 0; i < names.length; i += 3) {
-                                                const cmds = names.slice(i, i + 3).map((item) => `✰${item}`);
+                                                const cmds = names.slice(i, i + 3).map((item) => `﹝🐰﹞${item}`);
                                                 msg += `\n│ ${cmds.join(" ".repeat(Math.max(1, 10 - cmds.join("").length)))}`;
                                         }
 
-                                        msg += `\n╰────────────𒁍`;
+                                        msg += `\n╰────────────﹝🐰﹞`;
                                 }
                         });
 
                         const totalCommands = commands.size;
-                        msg += `\n𝗖𝘂𝗿𝗿𝗲𝗻𝘁𝗹𝘆, 𝘁𝗵𝗲 𝗯𝗼𝘁 𝗵𝗮𝘀 ${totalCommands} 𝗰𝗼𝗺𝗺𝗮𝗻𝗱𝘀 𝘁𝗵𝗮𝘁 𝗰𝗮𝗻 𝗯𝗲 𝘂𝘀𝗲𝗱\n`;
-                        msg += `𝗧𝘆𝗽𝗲 ${prefix} 𝗵𝗲𝗹𝗽 𝗰𝗺𝗱𝗡𝗮𝗺𝗲 𝘁𝗼 𝘃𝗶𝗲𝘄 𝘁𝗵𝗲 𝗱𝗲𝘁𝗮𝗶𝗹𝘀 𝗼𝗳 𝘁𝗵𝗮𝘁 𝗰𝗼𝗺𝗺𝗮𝗻𝗱\n\n`;
+                        msg += `\n﹝🐰﹞► 𝚑𝚎𝚗𝚕𝚘𝚘! 𝚝𝚑𝚒𝚜 𝚒𝚜 𝚂𝙸𝚂𝙸 𝙰𝙸 𝚝𝚑𝚎 𝚌𝚞𝚝𝚒𝚙𝚒𝚎 𝚋𝚘𝚝 𝚘𝚏 𝚖𝚢 𝙼𝙰𝚂𝚃𝙴𝚁 𝚈𝙾𝚈𝙰 | 𝙰𝚈𝙼𝙸, 𝚒 𝚑𝚊𝚟𝚎 𝚌𝚞𝚛𝚛𝚎𝚗𝚝𝚕𝚢 ${totalCommands} 𝚌𝚘𝚖𝚖𝚊𝚗𝚍𝚜 𝚝𝚑𝚊𝚝 𝚌𝚊𝚗 𝚋𝚎 𝚞𝚜𝚎𝚍!😽\n`;
+                        msg += `﹝🐰﹞► 𝚝𝚢𝚙𝚎 ${prefix} 𝚑𝚎𝚕𝚙 𝚌𝚖𝚍𝙽𝚊𝚖𝚎 𝚝𝚘 𝚟𝚒𝚎𝚠 𝚍𝚎𝚝𝚊𝚒𝚕𝚜 𝚘𝚏 𝚌𝚘𝚖𝚖𝚊𝚗𝚍! \n\n`;
                         msg += `░██████╗██╗░██████╗██╗\n██╔════╝██║██╔════╝██║\n╚█████╗░██║╚█████╗░██║\n░╚═══██╗██║░╚═══██╗██║\n██████╔╝██║██████╔╝██║\n╚═════╝░╚═╝╚═════╝░╚═╝`; // its not decoy so change it if you want 
 
                         const helpListImages = [
