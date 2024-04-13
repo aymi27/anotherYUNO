@@ -112,7 +112,7 @@ module.exports = {
                                 const guideBody = configCommand.guide?.en || "No guide available.";
                                 const usage = guideBody.replace(/{p}/g, prefix).replace(/{n}/g, configCommand.name);
 
-                                const response = `╭── ﹝ 🐰𝗡𝗔𝗠𝗘🐰 ────﹝🐰﹞
+                                const response =`╭── ﹝ 🐰𝗡𝗔𝗠𝗘🐰 ────﹝🐰﹞
         │ ${configCommand.name}
         ├── ﹝ 𝗜𝗡𝗙𝗢 ﹞►🐇
         │ Description: ${longDescription}
