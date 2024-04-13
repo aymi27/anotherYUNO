@@ -29,9 +29,9 @@
   "OWNER": "yoya",
   "AGE": "secreet",
   "GENDER": "FEMALE",
-  "nickNameBot": "YUNO",
+  "nickNameBot": "〘🐰〙𝚂𝙸𝚂𝙸 𝙰𝙸",
   "FACEBOOK": "https://www.facebook.com/100095262681590",
-  "prefix": "!",
+  "prefix": ".",
   "database": {
     "type": "sqlite",
     "uriMongodb": "",
