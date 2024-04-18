@@ -28,7 +28,7 @@ module.exports = {
         onStart: async function ({ message, args, event, threadsData, role }) {
                 const { threadID } = event;
                 const threadData = await threadsData.get(threadID);
-                const prefix = false(threadID);
+                const prefix = getPrefix(threadID);
 
                 if (args.length === 0) {
                         const categories = {};
